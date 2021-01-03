@@ -1,0 +1,2 @@
+#!/bin/bash
+eksctl create cluster --name flask --version 1.18 --region eu-west-1 --nodegroup-name linux-nodes --nodes 3 --nodes-min 1 --nodes-max 4 --with-oidc --fargate --managed
