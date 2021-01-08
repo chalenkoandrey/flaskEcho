@@ -1,0 +1,56 @@
+replicaCount: 1
+
+image:
+  repository: 846446731115.dkr.ecr.ca-central-1.amazonaws.com/echoserver
+  pullPolicy: Always
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+securityContext: {}
+service:
+  type: LoadBalancer
+  port: 5000
+
+ingress:
+  enabled: false
+  annotations: 
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/tags: Environment=dev,Team=test
+  hosts:
+    - host: echoserver.example.com
+      paths: []
+  tls: []
+
+resources: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+env:          
+ - name: "HOSTDB"
+   value: ""
+ - name: "LOGIN"
+   value: ""
+ - name: "PASSWORD"
+   value: ""  

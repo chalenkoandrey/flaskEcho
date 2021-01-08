@@ -3,12 +3,12 @@ from flask import render_template
 import os
 import mysql.connector
 app = Flask(__name__)
-host="database-2.cyo3bhhkjl95.ca-central-1.rds.amazonaws.com"
+host=os.getenv("HOSTDB")
 try:
   mydb = mysql.connector.connect(
-    host="database-2.cyo3bhhkjl95.ca-central-1.rds.amazonaws.com",
-    user="admin",
-    password="12345678"
+    host=os.getenv("HOSTDB"),
+    user=os.getenv("LOGIN"),
+    password=os.getenv("PASSWORD")
   )
   mycursor = mydb.cursor()
 
